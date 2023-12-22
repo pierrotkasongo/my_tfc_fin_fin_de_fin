@@ -1,0 +1,97 @@
+{% extends 'script.html' %}
+{% load static %}
+{% block main %} 
+<head>
+    <title>Enregistrement avocat</title>
+    <link rel="stylesheet" href="{% static 'css/enreg_perso.css' %}">
+</head>
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 logo" href="{% url 'enreg_personnel' %}">Cabinet</a>
+    <ul class="navbar-nav me-auto list_led">
+        <li class="nav-item">
+            <span class="led_rouge text-white mt-2"></span> <span class="led_jaune text-white"></span> <span class="led_bleu text-white"></span></a>
+        </li>
+    </ul>
+    <button class="navbar-toggler position-absolute d-md-none collapsed tgler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-nav">
+        <div class="nav-item text-nowrap sing-out">
+            <a class="nav-link px-3 text-white" href="{% url 'deconnexion' %}"> <i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+        </div>
+    </div>
+</header>
+<div class="container-fluid mt-3">
+    <div class="row">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+            <div class="position-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <div class="d-flex bg">
+                            {% if user.photo %}
+                            <a class="nav-link" href=""><img src="{{user.photo.url}}" class="img-circle me-2 img" alt="{{user.name}}"></a>
+                            <p class="pseudo mt-4">@Admin<br>{{user.username}}</p>
+                            {% else %}
+                                <h5>Pas d'image</h5>
+                            {% endif %}
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link actif" href="{% url 'enreg_personnel' %}"><i class="fas fa-solid fa-user"></i> Personnels</a></li>
+                    <li class="nav-item"><a class="nav-link inactif" href="{% url 'enreg_avocat' %}"><i class="fas fa-solid fa-user"></i> Avocats</a></li>
+                    <li class="nav-item"><a class="nav-link inactif" href="{% url 'enreg_client' %}"><i class="fas fa-solid fa-user"></i> Clients</a></li>
+                    <li class="nav-item"><a class="nav-link inactif" href="{% url 'liste_dossier' %}"><i class="fas fa-folder"></i> Liste des dossiers</a></li>
+                    <li class="nav-item"><a class="nav-link inactif" href="{% url 'liste_acte' %}"><i class="fas fa-file-alt"></i> Liste des actes</a></li>
+                    <li class="nav-item"><a class="nav-link inactif" href="{% url 'liste_send_file' %}"><i class="fas fa-file-alt"></i> Liste des fichiers</a></li>
+                    <li class="nav-item"><a class="nav-link inactif" href="{% url 'liste_archive' %}"><i class="fas fa-archive"></i> Liste des archives</a></li>
+                    <li class="nav-item"><a class="nav-link inactif" href="{% url 'service_avocat' %}"><i class="fas fa-balance-scale"></i> Services</a></li>
+                    <li class="nav-item"><a class="nav-link inactif" href="{% url 'deconnexion' %}"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
+                </ul>
+            </div>
+        </nav>
+        <main class="col-md-9 ms-sm-auto col-lg-10">
+            <div class="container-fluid">
+                <p>Voir les details de l'acte</p>
+                <hr>
+                <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert {{message.tags}} alert-dismissible fade show text-center mb-4" role="alert">
+                        {{message}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    <div class="row ms-sm-auto">
+                        <div class="col-12 col-md-6 col-lg-6">
+                            <div class="mb-3">
+                                <i class="fas fa-solid fa-hashtag" style='cursor: pointer;'></i>
+                                <label for="exampleFormControlInput1" class="form-label">Numéro du dossier</label>
+                                <input type="text" class="form-control" name="numDossier" value="{{actes.numDossier}}" disabled>
+                            </div>
+                            <div class="mb-3">
+                                <i class="fas fa-solid fa-hashtag" style='cursor: pointer;'></i>
+                                <label for="exampleFormControlInput1" class="form-label">Numéro acte</label>
+                                <input type="text" class="form-control" name="numAct" autocomplete="off" value="{{actes.numAct}}" disabled required>
+                            </div>
+                            <div class="mb-3">
+                                <i class= ""style='cursor: pointer;'></i>
+                                <label for="exampleFormControlInput1" class="form-label">Titre</label>
+                                <input type="text" class="form-control" name="titreAct"value="{{actes.titreAct}}" autocomplete="off" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <i class= "fas fa-edit"style='cursor: pointer;'></i>
+                                <label for="exampleFormControlInput1" class="form-label">Rédiger l'acte</label>
+                                <textarea name="DescrpAct" id="" class="form-control" cols="30" rows="" required>{{actes.DescrpAct}}</textarea>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enregistre l'acte</button>
+                </form>
+            </div>
+        </main>
+    </div>
+</div>
+{% endblock main %}

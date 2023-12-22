@@ -1,0 +1,65 @@
+from django.urls import path, include
+from .views import *
+
+urlpatterns = [
+   path('',home, name='home'),
+   path('connexion', connexion, name='connexion'),
+   path('deconnexion', deconnexion, name='deconnexion'),
+   #Admin
+   path('enreg_personnel',enreg_personnel, name='enreg_personnel'),
+   path('delete_personnel/id=<int:id>', delete_personnel, name='delete_personnel'),
+   path('update_personnel/id=<int:id>', update_personnel, name='update_personnel'),
+   path('enreg_avocat', enreg_avocat, name='enreg_avocat'),
+   path('delete_avocat/id=<int:id>', delete_avocat, name='delete_avocat'),
+   path('update_avocat/id=<int:id>', update_avocat, name='update_avocat'),
+   path('enreg_client', enreg_client, name='enreg_client'),
+   path('service_avocat', service_avocat, name='service_avocat'),
+   path('delete_service/id=<int:id>', delete_service, name='delete_service'),
+   path('delete_client/id=<int:id>', delete_client, name='delete_client'),
+   path('update_client/id=<int:id>', update_client, name='update_client'),
+   path('liste_dossier',liste_dossier,name='liste_dossier'),
+   path('admin_delete_dossier_client/id=<int:id>', admin_delete_dossier_client, name='admin_delete_dossier_client'),
+   path('admin_update_dossier_client/id=<int:id>', admin_update_dossier_client, name='admin_update_dossier_client'),
+   path('liste_acte',liste_acte,name='liste_acte'),
+   path('admin_update_acte/id=<int:id>', admin_update_acte, name='admin_update_acte'),
+   path('liste_archive',liste_archive,name='liste_archive'),
+   path('admin_delete_dossier_arch/id=<int:id>', admin_delete_dossier_arch, name='admin_delete_dossier_arch'),
+   path('liste_send_file',liste_send_file,name='liste_send_file'),
+   path('admin_delete_send_file/id=<int:id>',admin_delete_send_file,name='admin_delete_send_file'),
+   #Personnel
+   path('personnel_enregis_avocat', personnel_enregis_avocat, name='personnel_enregis_avocat'),
+   path('personnel_delete_avocat/id=<int:id>', personnel_delete_avocat, name='personnel_delete_avocat'),
+   path('personnel_update_avocat/id=<int:id>', personnel_update_avocat, name='personnel_update_avocat'),
+   path('personnel_enreg_client', personnel_enreg_client, name='personnel_enreg_client'),
+   path('personnel_delete_client/id=<int:id>', personnel_delete_client, name='personnel_delete_client'),
+   path('personnel_update_client/id=<int:id>', personnel_update_client, name='personnel_update_client'),
+   path('liste_dossier_person', liste_dossier_person, name='liste_dossier_person'),
+   path('person_delete_dossier_client/id=<int:id>', person_delete_dossier_client, name='person_delete_dossier_client'),
+   path('person_update_dossier_client/id=<int:id>', person_update_dossier_client, name='person_update_dossier_client'),
+   path('liste_acte_person', liste_acte_person, name='liste_acte_person'),
+   path('person_update_acte/id=<int:id>', person_update_acte, name='person_update_acte'),
+   path('liste_archive_person', liste_archive_person, name='liste_archive_person'),
+   path('person_delete_dossier_archive/id=<int:id>', person_delete_dossier_archive, name='person_delete_dossier_archive'),
+   
+   #Avocat
+   path('avocat_enregis_client',avocat_enregis_client,name='avocat_enregis_client'),
+   path('avocat_delete_client/id=<int:id>', avocat_delete_client, name='avocat_delete_client'),
+   path('avocat_update_client/id=<int:id>', avocat_update_client, name='avocat_update_client'),
+   path('avocat_update_dossier/id=<int:id>', avocat_update_dossier, name='avocat_update_dossier'),
+   path('avocat_delete_dossier/id=<int:id>', avocat_delete_dossier, name='avocat_delete_dossier'),
+   path('avocat_redige_acte', avocat_redige_acte, name='avocat_redige_acte'),
+   path('avocat_delete_acte/id=<int:id>', avocat_delete_acte, name='avocat_delete_acte'),
+   path('avocat_update_acte/id=<int:id>', avocat_update_acte, name='avocat_update_acte'),
+   path('avocat_ajout_dossier', avocat_ajout_dossier,name='avocat_ajout_dossier'),
+   path('avocat_archive_post_dossier_view', avocat_archive_post_dossier_view, name='avocat_archive_post_dossier_view'),
+   path('avocat_update_ach_dossier/id=<int:id>', avocat_update_ach_dossier, name='avocat_update_ach_dossier'),
+   path('avocat_delete_dossier_archive/id=<int:id>', avocat_delete_dossier_archive, name='avocat_delete_dossier_archive'),
+   
+   path('avocat_liste_send_file', avocat_liste_send_file, name='avocat_liste_send_file'),
+   path('avocat__delete_send_file/id=<int:id>', avocat__delete_send_file, name='avocat__delete_send_file'),
+   #Client
+   path('client',client, name='client'),
+   path('mon_espace_client', mon_espace_client, name='mon_espace_client'),
+   path('send_file_avocat', send_file_avocat, name='send_file_avocat'),
+]
+

@@ -1,0 +1,99 @@
+{% extends 'script.html' %}
+{% load static %}
+{% block main %} 
+<head>
+    <title>send_file_avocat</title>
+    <link rel="stylesheet" href="{% static 'css/enreg_perso.css' %}">
+</head>
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 logo" href="{% url 'client' %}">Cabinet</a>
+    <ul class="navbar-nav me-auto list_led">
+        <li class="nav-item">
+            <span class="led_rouge text-white mt-2"></span> <span class="led_jaune text-white"></span> <span class="led_bleu text-white"></span></a>
+        </li>
+    </ul>
+    <button class="navbar-toggler position-absolute d-md-none collapsed tgler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-nav">
+        <div class="nav-item text-nowrap sing-out">
+            <a class="nav-link px-3 text-white" href="{% url 'deconnexion' %}"> <i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+        </div>
+    </div>
+</header>
+<div class="container-fluid mt-2">
+    <div class="row">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+            <div class="position-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <div class="d-flex bg">
+                            {% if user.photo %}
+                                <a class="nav-link" href=""><img src="{{user.photo.url}}" class="img-circle me-2 img" alt="{{user.name}}"></a>
+                                <p class="pseudo mt-4">@Client<br>{{user.username}}</p>
+                                {% else %}
+                                    <h5>Pas d'image</h5>
+                            {% endif %}
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link inactif" href="{% url 'client' %}"><i class="far fa-file-alt"></i> Mes dossiers</a></li>
+                    <li class="nav-item"><a class="nav-link inactif" href="{% url 'mon_espace_client' %}"><i class="far fa-solid fa-user"></i> Mon espace</a></li>
+                    <li class="nav-item"><a class="nav-link inactif" href="{% url 'send_file_avocat' %}"><i class="far fa-file-alt"></i> Envoyer un fichier</a></li>
+                    <li class="nav-item"><a class="nav-link inactif" href="{% url 'deconnexion' %}"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li> 
+                </ul>
+            </div>
+        </nav>
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="container">
+                <div class="space-img" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('{% static 'images/update_mon_espace.jpg'%}');">
+                    <div class="ligne"></div>
+                    <img src="{{user.photo.url}}" class="rounded-circle me-2 img-circle1">
+                    <p class="d-flex mb-2">
+                        <span class="led_con"></span>
+                    </p>
+                </div>
+            </div>
+            <div class="container mt-4">
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert {{message.tags}} alert-dismissible fade show text-center mb-4" role="alert">
+                        {{message}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    <div class="mb-3">
+                        <label for="fichier" class="form-label">Titre</label>
+                        <input type="text" class="form-control" name="titre" id="fichier">
+                    </div>
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Choississez un avocat</label>
+                        <select name="username" id="username" class="form-select">
+                            <option value=""></option>
+                                {% for  avocat in avocats %}
+                                    <option value="{{avocat.id}}">{{avocat.username}} {{avocat.first_name}}</option>
+                                {% endfor%}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="fichier" class="form-label">Noms</label>
+                        <input type="text" class="form-control" value="{{user.username}} | {{user.first_name}}" name="name_client" id="fichier">
+                    </div>
+                    <div class="mb-3">
+                        <label for="upload" class="form-label">Fichier</label>
+                        <input type="file" class="form-control" name="fichier" accept=".pdf, .docx, .txt, .png, .jpg, .jpeg">
+                    </div>
+                   
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Date et heure</label>
+                        <input type="datetime-local" class="form-control" name="date_send" required>
+                    </div>
+                   
+                    <button type="submit" class="btn btn-primary">Partager</button>
+                </form>
+               
+            </div>
+        </main>
+{% endblock main %}

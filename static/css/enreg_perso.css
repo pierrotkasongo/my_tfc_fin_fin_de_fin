@@ -1,0 +1,201 @@
+.logo{
+    font-family: freestyle script;
+    font-size: 2rem; 
+}
+
+.led_rouge {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 100%;
+    background-color: red;
+    animation-duration: 5s;
+    animation-name: clignoter;
+    animation-iteration-count: infinite;
+    transition: none;
+    position: relative;
+    
+}
+.led_jaune {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 30px;
+    background-color: yellow;
+    animation-duration: 5s;
+    animation-name: clignoter;
+    animation-iteration-count: infinite;
+    transition: none;
+    position: relative;
+    
+}
+.led_bleu {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 30px;
+    background-color: blue;
+    animation-duration: 5s;
+    animation-name: clignoter;
+    animation-iteration-count: infinite;
+    transition: none;
+    position: relative;
+    
+}
+@keyframes clignoter {
+    0% {
+        opacity: 1;
+    }
+    40% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+.list_led{
+    position: relative;
+    right: 8rem;
+}
+@media (max-width: 767.98px) {
+    .list_led {
+        position: relative;
+        left: 0;
+    }
+}
+.sidebar{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 48px 0 0;
+    background-color: rgb(21, 21, 21);
+}
+@media (max-width: 767.98px) {
+    .sing-out {
+        display: none;
+    }
+}
+.sidebar .nav-link {
+    font-family: Maiandra GD;
+    color: whitesmoke;
+}
+@media (max-width: 767.98px) {
+    .tgler{
+        position: relative;
+        left: 88%;
+    }
+}
+.img{
+    position: relative;
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+}
+.profil{
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+}
+.pseudo{
+    position: relative;
+    z-index: 1;
+    color: whitesmoke;
+    top: 10px;
+    right: 10px;
+}
+.msg_acte{
+    position: relative;
+    height: 8rem;
+}
+.space-img {
+    height: 160px;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+}
+.img-circle1 {
+    height: 110px;
+    width: 110px;
+    position: relative;
+    left: 44.4%;
+    top: 80px;
+    border-radius: none;
+    opacity: 0.99;
+}
+.img-client{
+    position: relative;
+    margin-top: -2rem;
+}
+.content {
+    margin: 0 auto;
+    width: 93%;
+    margin-top: 40px;
+    padding: 17px;
+}
+.i{
+position: relative;
+float: right;
+}
+
+.led_con {
+    position: relative;
+    height: 15px;
+    width: 15px;
+    border-radius: 30px;
+    background-color: rgb(67, 245, 91);
+    animation-duration: .8s;
+    animation-name: clignoter;
+    animation-iteration-count: infinite;
+    transition: none;
+    position: relative;
+    top: 3.6rem;
+    left: 33rem;
+}
+
+@keyframes clignoter {
+    0% {
+        opacity: 1;
+    }
+    40% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@media (max-width:1280px) {
+    .led_con {
+        display: none;
+    }
+}
+@media (max-width:959px) {
+    .led_con {
+        display: none;
+    }
+}
+@media (max-width: 767.98px){
+    .led_con {
+        display: none;
+    }
+}
+@media (max-width: 300px){
+    .led_con {
+        display: none;
+    }
+}
+.msgb{
+    position: relative;
+    height: 3rem;
+    top: 2rem;
+}
+
+
+.img-thumbnail{
+    position: relative;
+    left: 7rem;
+    width: 60px;
+    height: 60px;
+}

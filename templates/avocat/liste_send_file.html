@@ -1,0 +1,102 @@
+{% extends 'script.html' %}
+{% load static %}
+{% block main %} 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>liste des fichiers</title>
+    <link rel="stylesheet" href="{% static 'css/enreg_perso.css' %}">
+</head>
+<body>
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 logo" href="{% url 'avocat_enregis_client' %}">Cabinet</a>
+        <ul class="navbar-nav me-auto list_led">
+            <li class="nav-item">
+                <span class="led_rouge text-white mt-2"></span> <span class="led_jaune text-white"></span> <span class="led_bleu text-white"></span></a>
+            </li>
+        </ul>
+        <button class="navbar-toggler position-absolute d-md-none collapsed tgler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-nav">
+            <div class="nav-item text-nowrap sing-out">
+                <a class="nav-link px-3 text-white" href="{% url 'deconnexion' %}"> <i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+            </div>
+        </div>
+    </header>
+    <div class="container-fluid mt-2">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <div class="d-flex bg">
+                                <{% if user.photo %}
+                                <a class="nav-link" href=""><img src="{{user.photo.url}}" class="img-circle me-2 img" alt="{{user.name}}"></a>
+                                <p class="pseudo mt-4">@Avocat<br>{{user.username}}</p>
+                                {% else %}
+                                    <h5>Pas d'image</h5>
+                                {% endif %}
+                            </div>
+                        </li>
+                        <li class="nav-item"><a class="nav-link inactif" href="{% url 'avocat_enregis_client' %}"><i class="fas fa-solid fa-user"></i> Clients</a></li>
+                        <li class="nav-item"><a class="nav-link inactif" href="{% url 'avocat_ajout_dossier' %}"><i class="fas fa-folder"></i> Dossiers</a></li>
+                        <li class="nav-item"><a class="nav-link inactif" href="{% url 'avocat_redige_acte' %}"><i class="fas fa-file-alt"></i> Redaction d'actes</a></li>
+                        <li class="nav-item"><a class="nav-link inactif" href="{% url 'avocat_liste_send_file' %}"><i class="fas fa-file-alt"></i> Liste des fichiers</a></li>
+                        <li class="nav-item"><a class="nav-link inactif" href="{% url 'avocat_archive_post_dossier_view' %}"><i class="fas fa-archive"></i> Liste des archives</a></li>
+                        <li class="nav-item"><a class="nav-link inactif" href="{% url 'deconnexion' %}"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="container">
+                    <p> La liste des fichiers</p>
+                    <form class="d-flex mb-4 mx-1">
+                        <input class="form-control me-2" type="search" placeholder="Entrez le titre ou nom de fichier" name="recherche"  autocomplete="off">
+                        <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <tbody>
+                                    <tr class="th">
+                                        <td class="title">{{fichier_number}}</td>
+                                        <td class="title">Titre des fichiers</td>
+                                        <td class="title">Prénom des avocats</td>
+                                        <td class="title">Noms cliens</td>
+                                        <td class="title text-center">Fichiers et téléchargement</td>
+                                        <td class="title">Date et heure</td>
+                                        <td class="title text-center">Traitement</td>
+                                        
+                                    </tr>
+                                    {% for fichier in fichiers%}
+                                        <tr>
+                                            <td></td>
+                                            <td>{{fichier.titre | capfirst}}</td>
+                                            <td>{{fichier.username | capfirst}}</td>
+                                            <td>{{fichier.name_client | capfirst}}</td>
+                                            
+                                            <td class="text-center">
+                                                <a class="btn btn-primary" href="{{fichier.fichier.url}}" download="{{fichier.fichier.url}}"><i class="fas fa-solid fa-download"></i></a>
+                                            </td>
+                                            <td>Il y'a {{fichier.date_send | timesince}}</td>
+                                            <td class="text-center">
+                                                <a class="btn btn-danger" href="{% url 'avocat__delete_send_file' fichier.id %}" role="button"><i class="far fa-trash-alt"></i></a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock main %}

@@ -1,0 +1,110 @@
+{% extends 'script.html' %}
+{% load static %}
+{% block main %}
+<head>
+    <meta charset="UTF-8">
+    <title>Services</title>
+    <link rel="stylesheet" href="{% static 'css/enreg_perso.css' %}">
+</head>
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 logo" href="{% url 'enreg_personnel' %}">Cabinet</a>
+    <ul class="navbar-nav me-auto list_led">
+        <li class="nav-item">
+            <span class="led_rouge text-white mt-2"></span> <span class="led_jaune text-white"></span> <span
+                class="led_bleu text-white"></span></a>
+        </li>
+    </ul>
+    <button class="navbar-toggler position-absolute d-md-none collapsed tgler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-nav">
+        <div class="nav-item text-nowrap sing-out">
+            <a class="nav-link px-3 text-white" href="{% url 'deconnexion' %}"> <i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+        </div>
+    </div>
+</header>
+
+<div class="container-fluid mt-3">
+    <div class="row">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+            <div class="position-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <div class="d-flex bg">
+                            {% if user.photo %}
+                                <a class="nav-link" href=""><img src="{{user.photo.url}}" class="img-circle me-2 img" alt="{{user.name}}"></a>
+                                <p class="pseudo mt-4">@Admin<br>{{user.username}}</p>
+                                {% else %}
+                                    <h5>Pas d'image</h5>
+                            {% endif %}
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link actif" href="{% url 'enreg_personnel' %}"><i class="fas fa-solid fa-user"></i> Personnels</a></li>
+                    <li class="nav-item"><a class="nav-link inactif" href="{% url 'enreg_avocat' %}"><i class="fas fa-solid fa-user"></i> Avocats</a></li>
+                    <li class="nav-item"><a class="nav-link inactif" href="{% url 'enreg_client' %}"><i class="fas fa-solid fa-user"></i> Clients</a></li>
+                    <li class="nav-item"><a class="nav-link inactif" href="{% url 'liste_dossier' %}"><i class="fas fa-folder"></i> Liste des dossiers</a></li>
+                    <li class="nav-item"><a class="nav-link inactif" href="{% url 'liste_acte' %}"><i class="fas fa-file-alt"></i> Liste des actes</a></li>
+                    <li class="nav-item"><a class="nav-link inactif" href="{% url 'liste_send_file' %}"><i class="fas fa-file-alt"></i> Liste des fichiers</a></li>
+                    <li class="nav-item"><a class="nav-link inactif" href="{% url 'liste_archive' %}"><i class="fas fa-archive"></i> Liste des archives</a></li>
+                    <li class="nav-item"><a class="nav-link inactif" href="{% url 'service_avocat' %}"><i class="fas fa-balance-scale"></i> Services</a></li>
+                    <li class="nav-item"><a class="nav-link inactif" href="{% url 'deconnexion' %}"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
+                </ul>
+            </div>
+        </nav>
+        <main class="col-md-9 ms-sm-auto col-lg-10">
+            <div class="container">
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-12 col-md-9 col-lg-9">
+                            <div class="mb-2">
+                                <label for="first_name" class="form-label">Nouveau service</label>
+                                <input type="text" class="form-control" name="NomServ" required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-3 col-lg-3 mt-4">
+                            <div class="mb-2">
+                                <button type="submit" class="btn btn-primary mt-2">Ajouter un service</button>
+                                <button type="reset" class="btn btn-danger mt-2">Annuler</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="container">
+                <p> La liste des services</p>
+                <form class="d-flex mb-4 mx-1">
+                    <input class="form-control me-2" type="search" placeholder="Entrez le nom du service" name="recherche"  autocomplete="off">
+                    <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <tbody>
+                                <tr class="th bg-dark text-white">
+                                    <td class="title">Nom des services</td>
+                                    <td class="title text-center">Traitement</td>
+                                    
+                                </tr>
+                                {% for service in services%}
+                                    <tr>
+                                        
+                                        <td>{{service.NomServ | capfirst}}</td>
+                                        
+                                        <td class="text-center">
+                                            <a class="btn btn-danger" href="{% url 'delete_service' service.id%}" role="button"><i class="far fa-trash-alt"></i></a>
+                                        </td>
+                                    </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+{% endblock main %}

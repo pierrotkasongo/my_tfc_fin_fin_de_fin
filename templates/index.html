@@ -1,0 +1,87 @@
+{% extends 'script.html' %}
+{% load static %}
+{% block main %}
+{% include "menu/menu.html" %}
+<head>
+    <title>Accueil</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+    <header style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('{% static 'images/banner.jpg'%}');">
+        <h4 class="text-white text-center text2" data-text="Bienvenue">Bienvenue</h4>
+        <p class="text-center text-white mt2 sous">
+            Dans Notre Système De Gestion des dossiers d'un Cabinet
+        </p>
+    </header>
+    <div class="container">
+        <div class="row mt-2">
+            <div class="col-md-4 g-4">
+                <div class="card" style="width: 100%;">
+                    <img src="{% static 'images/consutant.jpg'%}" class="card-img-top" alt="photo">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Consultation juridique et judiciaire</h5>
+                        <p class="card-text">
+                        En effet, un service de consultation juridique consiste à conseiller juridiquement et d’avis dispensés de l'homme dans droit.
+                        Ce dernier est habilité par la loi à assister des clients en recherche de solutions à leurs problèmes juridiques.
+                        </p>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 g-8"><img src="{% static 'images/banner_milieu.jpg'%}" class="box1" alt="banner_milieur"></div>
+            
+        </div>
+        <div class="row mt-2">
+            <h3 class="text-dart text-center">Nos services</h3>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-3 g-2">
+                <div class="card carte_po">
+                    <img src="{% static 'images/assis.webp'%}" class="img-fluid" alt="photo">
+                    <div class="card-body mt-4">
+                        <h5 class="card-title mt-4"><i class="fas fa-assistive-listening-systems"></i> Assistance juridique et judiciaire</h5>
+                        <p class="card-text mt-4">
+                        Parmi les services proposés, on peut compter la rédaction des documents (testament, contrats, représentation d’un tiers en justice, négociation sur la garde des enfants).
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 g-2 box4">
+                <div class="card carte_po">
+                    <img src="{% static 'images/avocat.jpg'%}" class="img-fluid" alt="photo" style="position: relative;height: 15rem;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center"><i class="fas fa-balance-scale"></i> Réparation en justice</h5>
+                        <p class="card-text">
+                        La réparation pénale à tous les stades du procédure par le parquet dans le cadre des alternatives aux poursuites ou par le juge des enfants, prononcée dans le cadre pénal.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 g-2">
+                <div class="card carte_po">
+                    <img src="{% static 'images/decision.jpg'%}" class="img-fluid" alt="photo" style="position: relative;height: 15rem;">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-folder"></i> Fiscalité</h5>
+                        <p class="card-text">
+                        la fiscalité consiste en des prélèvements et réparations imposés aux habitants et entreprises d’un pays par des autorités qui, de leurs cotés, assure la protection et fournit des services.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 g-2">
+                <div class="card carte_po">
+                    <img src="{% static 'images/proc_famille.jpg'%}" class="img-fluid" alt="photo">
+                    <div class="card-body mt-4">
+                        <h5 class="card-title mt-4"><i class="fas fa-solid fa-gavel"></i> Procédure de la famille et concordat</h5>
+                        <p class="card-text mt-4">Le concordat familial consiste également de limiter la durée des procédures avec des résultats garantis en trois mois maximum.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer mt-4 g-4 text-center">
+        <i class="fas fa-mobile-alt"></i> <span class=""> +243 819976718</span><br>
+        <i class="fas fa-envelope-square"></i> <span class=""> cabmubenesha71@gmail.com</span><br>
+        <i class="fas fa-map-marker-alt"></i><span class=""> Situé sur dans la commune de KALAMU dans le quartier Matonge sur l’avenue Bonga numéro 1.</span><br>
+    </div>
+</body>
+{% endblock main %}

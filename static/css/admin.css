@@ -1,0 +1,60 @@
+.logo{
+    font-family: freestyle script;
+    font-size: 2rem; 
+}
+.sec{
+    font-family: Maiandra GD;
+}
+.entete_nav{
+    font-family: Maiandra GD;
+}
+.led_rouge {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 100%;
+    background-color: red;
+    animation-duration: 5s;
+    animation-name: clignoter;
+    animation-iteration-count: infinite;
+    transition: none;
+    position: relative;
+    
+}
+.led_jaune {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 30px;
+    background-color: yellow;
+    animation-duration: 5s;
+    animation-name: clignoter;
+    animation-iteration-count: infinite;
+    transition: none;
+    position: relative;
+    
+}
+.led_bleu {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 30px;
+    background-color: blue;
+    animation-duration: 5s;
+    animation-name: clignoter;
+    animation-iteration-count: infinite;
+    transition: none;
+    position: relative;
+    
+}
+@keyframes clignoter {
+    0% {
+        opacity: 1;
+    }
+    40% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

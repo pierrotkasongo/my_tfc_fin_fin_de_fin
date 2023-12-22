@@ -1,0 +1,21 @@
+{% extends 'script.html' %}
+{% load static %}
+{% block main %}
+<head>
+    <title>404</title>
+</head>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-7 col-lg-7 col-xl-7">
+                <img src="{% static 'images/404.jpg' %}" class="img-fluid">
+            </div>
+            <div class="col-12 col-md-5 col-lg-5 col-xl-5" style="position: relative; margin-top: 12rem;">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita, cumque. Adipisci excepturi ea, ipsa 
+                vitae inventore quibusdam odio dolorum itaque unde consequuntur atque dolore cupiditate fuga! Quas, quis! Minus,
+                nihil.<a class="" href="{% url 'connexion' %}"><i class="fas fa-arrow-circle-left"></i> Retour</a>
+            </div>
+        </div>
+        
+    </div>
+
+{% endblock main %}
